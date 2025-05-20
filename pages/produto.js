@@ -1,9 +1,45 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import axios from 'axios'
 
 export default function Produto() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Função para processar a compra
+  const handleCompra = async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      // Chamar nossa API para criar a cobrança
+      const response = await axios.post('/api/create-charge', {
+        name: 'Cliente', // Idealmente, você coletaria esses dados do usuário
+        email: 'cliente@email.com'
+      });
+      
+      // Redirecionar para a página de pagamento da OpenPix
+      if (response.data.paymentLinkUrl) {
+        window.location.href = response.data.paymentLinkUrl;
+      } else if (response.data.qrCodeImage) {
+        // Alternativa: redirecionar para uma página com o QR code
+        // Armazenar os dados no localStorage para usar na página de pagamento
+        localStorage.setItem('pixPayment', JSON.stringify(response.data));
+        window.location.href = '/pagamento';
+      } else {
+        throw new Error('Não foi possível gerar o link de pagamento');
+      }
+    } catch (err) {
+      console.error('Erro ao processar pagamento:', err);
+      setError('Ocorreu um erro ao processar seu pagamento. Por favor, tente novamente.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="bg-black text-white font-sans">
       <Head>
@@ -28,9 +64,18 @@ export default function Produto() {
           </ul>
           <p className="mt-8 text-yellow-400 text-2xl font-bold">R$29,90</p>
           <p className="text-gray-400">PDF • Entrega imediata por e-mail após o pagamento</p>
-          <Link href="https://openpix.com.br/pay/45c7b3c0-05a8-4b29-a707-20677e496715">
-            <a className="mt-6 inline-block bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold">Comprar agora</a>
-          </Link>
+          
+          {/* Botão de compra com estado de carregamento */}
+          <button 
+            onClick={handleCompra}
+            disabled={loading}
+            className="mt-6 inline-block bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold disabled:opacity-50"
+          >
+            {loading ? 'Processando...' : 'Comprar agora'}
+          </button>
+          
+          {/* Mensagem de erro */}
+          {error && <p className="mt-4 text-red-500">{error}</p>}
         </section>
 
         {/* Seção Autor */}
