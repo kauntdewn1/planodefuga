@@ -12,9 +12,9 @@ export default function Home() {
       <div className="bg-black text-white font-sans">
         {/* Hero Section */}
         <section className="text-center py-20 px-6">
+        <img src="/img/autor.png" alt="Foto do autor" className="mx-auto mb-10 rounded-xl shadow-lg w-full md:w-[900px]" />
           <h1 className="text-4xl md:text-6xl font-bold mb-4">Você está preso em uma vida que não escolheu.</h1>
           <p className="text-xl md:text-2xl mb-8">Mas existe um caminho. O Plano de Fuga começa aqui.</p>
-          <img src="/img/autor.png" alt="Foto do autor" className="mx-auto mb-6 rounded-xl shadow-lg w-64" />
           <p className="text-lg font-semibold">📘 R$29,90 • Entrega imediata por e-mail</p>
           <Link href="/produto">
             <a className="mt-6 inline-block bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold">Quero meu Plano de Fuga</a>
