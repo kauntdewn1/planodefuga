@@ -11,4 +11,4 @@ Site de vendas para o livro "Plano de Fuga" e serviços relacionados.
 ## Como Executar
 
 1. Clone o repositório
-2. Instale as dependências:
+2. Instale as dependências:# planodefuga
