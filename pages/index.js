@@ -82,7 +82,7 @@ export default function Home() {
                   <img 
                     src="/img/acessar_plano_livro.png" 
                     alt="Quero meu Plano de Fuga" 
-                    className="mx-auto w-64 md:w-72" 
+                    className="mx-auto w-64 md:w-72 transition-transform duration-300 hover:scale-105 hover:drop-shadow-lg" 
                   />
                 </Link>
                 
