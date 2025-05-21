@@ -1,128 +1,53 @@
 import { useState } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Diagnostico.module.css'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import QuizQuestion from '../components/QuizQuestion'
-import QuizResult from '../components/QuizResult'
+import { QuizQuestion, QuizResult } from '../components/QuizDiagnostico';
 
-export default function Diagnostico() {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+
+const questions = [
+  {
+    question: 'Você sente que sua vida atual reflete quem você realmente é?',
+    options: ['Sim, totalmente', 'Mais ou menos', 'Não mesmo'],
+    scores: [0, 1, 3],
+  },
+  {
+    question: 'Você sente que tem clareza sobre o que quer da vida?',
+    options: ['Sim', 'Tenho dúvidas', 'Não faço ideia'],
+    scores: [0, 1, 3],
+  },
+  {
+    question: 'Você sente que está preso em uma rotina?',
+    options: ['Não', 'Um pouco', 'Totalmente'],
+    scores: [0, 2, 4],
+  }
+];
+
+export default function DiagnosticoPage() {
+  const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const [showResults, setShowResults] = useState(false);
-  
-  const questions = [
-    {
-      question: "Como você se sente em relação ao seu trabalho atual?",
-      options: [
-        "Amo o que faço e me sinto realizado(a)",
-        "É apenas um trabalho para pagar as contas",
-        "Não gosto, mas não vejo alternativas",
-        "Estou completamente insatisfeito(a) e esgotado(a)"
-      ]
-    },
-    {
-      question: "Qual a sua relação com dinheiro?",
-      options: [
-        "Tenho controle total das minhas finanças e invisto regularmente",
-        "Consigo pagar as contas, mas sobra pouco para investir",
-        "Vivo no limite, de salário em salário",
-        "Estou endividado(a) e isso me causa grande ansiedade"
-      ]
-    },
-    {
-      question: "Como você avalia seu equilíbrio entre vida pessoal e profissional?",
-      options: [
-        "Tenho tempo para trabalho, família, lazer e desenvolvimento pessoal",
-        "Consigo equilibrar na maioria das vezes, mas com algum esforço",
-        "Meu trabalho consome a maior parte do meu tempo e energia",
-        "Não tenho vida além do trabalho e das obrigações"
-      ]
-    },
-    {
-      question: "Qual seu nível de clareza sobre seu propósito de vida?",
-      options: [
-        "Tenho total clareza sobre meu propósito e trabalho alinhado a ele",
-        "Tenho algumas ideias, mas ainda estou explorando possibilidades",
-        "Não tenho certeza do meu propósito, mas gostaria de descobrir",
-        "Nunca pensei seriamente sobre isso ou me sinto completamente perdido(a)"
-      ]
-    },
-    {
-      question: "Como você lida com riscos e mudanças?",
-      options: [
-        "Abraço mudanças e vejo riscos como oportunidades",
-        "Aceito mudanças quando necessário, mas prefiro estabilidade",
-        "Evito riscos e mudanças sempre que possível",
-        "Tenho pavor de sair da minha zona de conforto"
-      ]
-    },
-  ];
-  
-  const handleAnswer = (answerIndex) => {
-    const newAnswers = [...answers, answerIndex];
+
+  const handleAnswer = (index) => {
+    const newAnswers = [...answers, questions[step].scores[index]];
     setAnswers(newAnswers);
-    
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-    } else {
-      setShowResults(true);
-    }
+    setStep(step + 1);
   };
-  
-  const restartQuiz = () => {
+
+  const handleRestart = () => {
+    setStep(0);
     setAnswers([]);
-    setCurrentQuestion(0);
-    setShowResults(false);
   };
-  
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Diagnóstico da Prisão - Plano de Fuga</title>
-        <meta name="description" content="Descubra quais são suas principais limitações com nosso diagnóstico interativo" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <Header />
-      
-      <main className={styles.main}>
-        <div className={styles.quizContainer}>
-          <h1 className={styles.title}>Diagnóstico da Prisão</h1>
-          <p className={styles.description}>
-            Responda às perguntas abaixo para descobrir quais são suas principais limitações 
-            e como o Plano de Fuga pode ajudar você a superá-las.
-          </p>
-          
-          {!showResults ? (
-            <>
-              <div className={styles.progressBar}>
-                <div 
-                  className={styles.progressFill} 
-                  style={{ width: `${(currentQuestion / questions.length) * 100}%` }}
-                ></div>
-              </div>
-              
-              <div className={styles.questionCounter}>
-                Pergunta {currentQuestion + 1} de {questions.length}
-              </div>
-              
-              <QuizQuestion 
-                question={questions[currentQuestion].question}
-                options={questions[currentQuestion].options}
-                onAnswer={handleAnswer}
-              />
-            </>
-          ) : (
-            <QuizResult 
-              answers={answers} 
-              onRestart={restartQuiz}
-            />
-          )}
-        </div>
-      </main>
-
-      <Footer />
+    <div className={styles.quizWrapper}>
+      {step < questions.length ? (
+        <QuizQuestion
+          question={questions[step].question}
+          options={questions[step].options}
+          onAnswer={handleAnswer}
+        />
+      ) : (
+        <QuizResult answers={answers} onRestart={handleRestart} />
+      )}
     </div>
-  )
+  );
 }

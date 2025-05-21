@@ -2,11 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import styles from '../styles/Diagnostico.module.css';
 
-export default function QuizResult({ answers, onRestart }) {
-  // Calcular pontuação baseada nas respostas (valores menores são melhores)
+export function QuizResult({ answers, onRestart }) {
   const score = answers.reduce((total, answer) => total + answer, 0);
-  
-  // Determinar o resultado baseado na pontuação
+
   let result;
   if (score <= 5) {
     result = {
@@ -44,3 +42,5 @@ export default function QuizResult({ answers, onRestart }) {
     </div>
   );
 }
+
+export default QuizResult;
