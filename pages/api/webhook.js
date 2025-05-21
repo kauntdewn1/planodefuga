@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   try {
     // Verificar token de autorização
     const authHeader = req.headers.authorization;
-    if (!authHeader || authHeader !== process.env.OPENPIX_WEBHOOK_TOKEN) {
+    if (!authHeader || authHeader !== `Bearer ${process.env.OPENPIX_WEBHOOK_TOKEN}`) {
       return res.status(401).json({ error: 'Não autorizado' });
     }
 
@@ -24,22 +24,18 @@ export default async function handler(req, res) {
     const rawBody = await buffer(req);
     const event = JSON.parse(rawBody.toString());
 
-    // Log para debug (remova em produção)
-    console.log('Webhook recebido:', JSON.stringify(event, null, 2));
-
     // Verificar se é um evento de pagamento completado
     if (event.event === 'OPENPIX:CHARGE_COMPLETED') {
-      // Aqui você pode processar o pagamento
-      // Por exemplo, enviar o e-mail com o produto
-      if (event.data && event.data.customer && event.data.customer.email) {
+      if (event.data?.customer?.email) {
         await sendProductEmail(event.data.customer.email);
       }
     }
 
-    // Sempre responda 200 para evitar reenvio do OpenPix
     return res.status(200).json({ received: true });
   } catch (error) {
-    console.error('Erro ao processar webhook:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Erro no webhook:', error.message);
+    }
     return res.status(500).json({ error: 'Erro interno do servidor' });
   }
 }

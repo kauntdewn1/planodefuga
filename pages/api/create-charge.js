@@ -10,6 +10,10 @@ export default async function handler(req, res) {
     // Obter dados do cliente do corpo da requisição
     const { name, email } = req.body;
     
+    if (!process.env.OPENPIX_API_KEY) {
+      throw new Error('Configuração da API OpenPix não encontrada');
+    }
+
     // Criar a cobrança na OpenPix
     const response = await axios.post(
       'https://api.openpix.com.br/api/v1/charge',
@@ -25,7 +29,7 @@ export default async function handler(req, res) {
       },
       {
         headers: {
-          Authorization: process.env.OPENPIX_API_KEY,
+          Authorization: `Bearer ${process.env.OPENPIX_API_KEY}`,
           'Content-Type': 'application/json',
           Accept: 'application/json'
         }
@@ -35,10 +39,11 @@ export default async function handler(req, res) {
     // Retornar os dados da cobrança para o cliente
     return res.status(200).json(response.data);
   } catch (error) {
-    console.error('Erro ao criar cobrança:', error.response?.data || error.message);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Erro na cobrança:', error.message);
+    }
     return res.status(500).json({ 
-      error: 'Erro ao processar pagamento',
-      details: error.response?.data || error.message
+      error: 'Erro ao processar pagamento'
     });
   }
 }
