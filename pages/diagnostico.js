@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Diagnostico.module.css'
-import { QuizQuestion, QuizResult } from '../components/QuizDiagnostico';
+import QuizQuestion from '../components/QuizQuestion'
+import QuizResult from '../components/QuizResult'
 
 
 const questions = [
