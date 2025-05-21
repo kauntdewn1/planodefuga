@@ -1,52 +1,502 @@
 /* avatargamer.module.css */
-.avatarWrapper {
+.gameContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    min-height: 300px;
+}
+
+.gameSection {
+    flex: 1;
+    max-width: 900px;
+    max-height: 600px;
+    position: relative;
+}
+
+.avatarSection {
+    min-height: 300px;
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    margin-bottom: 3rem;
-    animation: slideUp 1s ease-out forwards;
-  }
-  
-  .balao {
-    z-index: 20;
+    align-items: center;
+    background: transparent;
+}
+
+.avatarContainer {
     position: relative;
-    left: 2rem;
-    animation: fadeIn 1.2s ease-in-out forwards;
-  }
-  
-  /* No arquivo styles/avatargamer.module.css */
+    min-height: 300px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.speechBubble {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: float 3s ease-in-out infinite;
+    z-index: 2;
+}
+
+.avatar {
+    position: absolute;
+    bottom: 10%;
+    left: 40%;
+    transform: translateX(-50%);
+    animation: bounce 2s ease-in-out infinite;
+    z-index: 1;
+}
+
+/* No arquivo styles/avatargamer.module.css */
 @media (min-width: 768px) {
     .avatarContainer {
-      width: 800px;
-      margin: 0 auto;
-      position: relative;
+        min-height: 400px;
     }
-    
+
     .speechBubble {
-      position: relative;
-      left: 70px;
+        top: 15%;
+        left: 50%;
+        transform: translateX(-50%);
     }
-    
+
     .avatar {
-      position: absolute;
-      left: 350px;
-      bottom: -100px;
+        bottom: 10%;
+        left: 42%;
+        transform: translateX(-50%);
     }
-  }
+}
   
-  @keyframes slideUp {
-    from { transform: translateY(60px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
+@keyframes slideUp {
+  from { transform: translateY(60px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
   
-  @keyframes fadeInUp {
-    from { transform: translateY(100px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
+@keyframes fadeInUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
   
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+  
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+  
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
+}
+  
+/* Efeitos para a seção de fases */
+.gamePhasesSection {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+}
+
+.gamePhasesContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gamePhasesImage {
+    position: relative;
+    filter: brightness(1.1) contrast(1.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+
+.gamePhasesImage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        transparent 100%
+    );
+    animation: scanline 2s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+@keyframes flicker {
+    0% { opacity: 0.97; }
+    5% { opacity: 1; }
+    10% { opacity: 0.98; }
+    15% { opacity: 1; }
+    20% { opacity: 0.99; }
+    25% { opacity: 1; }
+    30% { opacity: 0.98; }
+    35% { opacity: 1; }
+    40% { opacity: 0.99; }
+    45% { opacity: 1; }
+    50% { opacity: 0.98; }
+    55% { opacity: 1; }
+    60% { opacity: 0.99; }
+    65% { opacity: 1; }
+    70% { opacity: 0.98; }
+    75% { opacity: 1; }
+    80% { opacity: 0.99; }
+    85% { opacity: 1; }
+    90% { opacity: 0.98; }
+    95% { opacity: 1; }
+    100% { opacity: 0.97; }
+}
+  
+/* Efeitos do Livro */
+.bookContainer {
+    position: relative;
+    animation: fadeInUp 1s ease-out;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.bookBadge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: #ffd700;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    transform: rotate(5deg);
+    transition: all 0.3s ease;
+    z-index: 20;
+}
+
+.bookBadge:hover {
+    transform: rotate(0deg) scale(1.05);
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+.bookBadge .icon {
+    font-size: 1.2rem;
+    margin-right: 4px;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+
+.bookBadge .category {
+    font-size: 0.7rem;
+    color: #ffa500;
+    margin-top: 2px;
+    opacity: 0.8;
+}
+
+.bookGlow {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.bookGlow::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    z-index: -1;
+}
+
+.unlockMessage {
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    animation: fadeIn 1s ease-out;
+}
+
+.unlockMessage::before {
+    content: '🔓';
+    margin-right: 0.5rem;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(255, 215, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+  
+/* Efeitos de Terminal e Holográficos */
+.terminalMessage {
+    position: relative;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+    overflow: hidden;
+}
+
+.terminalMessage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 0%, rgba(255, 215, 0, 0.1) 50%, transparent 100%);
+    animation: shine 3s infinite;
+}
+
+.terminalMessage::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 215, 0, 0.1) 25%,
+        transparent 50%,
+        rgba(255, 215, 0, 0.1) 75%,
+        transparent 100%
+    );
+    animation: holographic 4s linear infinite;
+    pointer-events: none;
+}
+
+.terminalText {
+    font-family: 'Courier New', monospace;
+    color: #00ff00;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #00ff00;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    position: relative;
+    z-index: 2;
+}
+
+.terminalText .highlight {
+    color: #ffd700;
+    animation: pulse 2s infinite;
+}
+
+.terminalText .strike {
+    text-decoration: line-through;
+    color: #ff4444;
+}
+
+.terminalText .escape {
+    color: #00ffff;
+    animation: glow 2s infinite;
+}
+
+.mentorBubble {
+    position: relative;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 20px;
+    margin-bottom: 1rem;
+}
+
+.mentorBubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(0, 0, 0, 0.8);
+}
+
+.mentorAvatar {
+    position: absolute;
+    bottom: -30px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #00ff00 }
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) }
+    100% { transform: translateX(100%) }
+}
+
+@keyframes holographic {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(360deg) }
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff; }
+    50% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; }
+}
+  
+/* Estilos do Mentor e Missão */
+.missionContainer {
+    position: relative;
+    min-height: 400px;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('/img/cenario-jogo.jpg') center/cover;
+    overflow: hidden;
+}
+
+.missionUnlocked {
+    position: relative;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 8px;
+    animation: fadeInDown 0.5s ease-out;
+}
+
+.missionUnlocked::before {
+    content: '🔓';
+    margin-right: 0.5rem;
+    animation: bounce 1s infinite;
+}
+
+.speechBubble {
+    position: relative;
+    animation: fadeInUp 0.5s ease-out 0.3s both;
+    filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.3));
+}
+
+.speechBubble::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.2) 0%, transparent 70%);
+    border-radius: 20px;
+    animation: pulse 2s infinite;
+    z-index: -1;
+}
+
+.avatar {
+    position: relative;
+    animation: fadeInUp 0.5s ease-out;
+    filter: drop-shadow(0 0 15px rgba(250, 204, 21, 0.2));
+}
+
+.mentorText {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out 0.6s forwards;
+}
+
+.mentorText .line {
+    display: block;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.mentorText .line::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.5), transparent);
+}
+
+.mentorRevelation {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out 1s forwards;
+    position: relative;
+}
+
+.mentorRevelation::before {
+    content: '→';
+    margin-right: 0.5rem;
+    color: #ef4444;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
   

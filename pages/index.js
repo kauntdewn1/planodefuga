@@ -11,32 +11,6 @@ export default function Home() {
   const [isMentorVisible, setIsMentorVisible] = useState(false);
 
   useEffect(() => {
-    // Efeito de som e vibração
-    const playTerminalSound = () => {
-      const audio = new Audio('/sounds/terminal.mp3');
-      audio.volume = 0.3;
-      audio.play();
-
-      // Vibração em dispositivos móveis
-      if (typeof navigator !== 'undefined' && navigator.vibrate) {
-        navigator.vibrate([20]);
-      }
-    };
-
-    // Toca o som quando o componente monta
-    playTerminalSound();
-
-    // Limpa o áudio quando o componente desmonta
-    return () => {
-      const audio = document.querySelector('audio');
-      if (audio) {
-        audio.pause();
-        audio.currentTime = 0;
-      }
-    };
-  }, []);
-
-  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -175,16 +149,18 @@ export default function Home() {
                     <div className="justify-self-center md:justify-self-start">
                         <Link 
                             href="/produto" 
-                            className="inline-block text-black px-10 py-3 rounded-lg font-bold group relative"
+                            legacyBehavior passHref
                         >
-                            <div className="absolute -inset-1 bg-yellow-800/30 rounded-lg blur-lg group-hover:bg-yellow-500/50 transition-all duration-300"></div>
-                            <div className="relative">
-                                <img 
-                                    src="/img/botton.png" 
-                                    alt="Quero meu Plano de Fuga" 
-                                    className="w-52 md:w-[320px] transform group-hover:scale-105 transition-transform duration-300" 
-                                />
-                            </div>
+                            <a className="inline-block text-black px-10 py-1 rounded-lg font-bold group relative">
+                                <div className="absolute -inset-1 bg-yellow-800/30 rounded-lg blur-lg group-hover:bg-yellow-500/50 transition-all duration-300"></div>
+                                <div className="relative">
+                                    <img 
+                                        src="/img/botton.png" 
+                                        alt="Quero meu Plano de Fuga" 
+                                        className="w-52 md:w-[320px] transform group-hover:scale-105 transition-transform duration-300" 
+                                    />
+                                </div>
+                            </a>
                         </Link>
                     </div>
                     <div className="justify-self-center md:justify-self-end">
@@ -205,7 +181,10 @@ export default function Home() {
                 <div className="mt-16">
                     <div className="inline-block px-15 py-3 bg-black/70 backdrop-blur-sm border border-yellow-500/30 rounded-xl">
                         <p className="text-sm text-gray-400 uppercase tracking-widest">
-                            Missão desbloqueada: Clique acima para ver a fase
+                            Missão desbloqueada:
+                        </p>
+                        <p className="text-sm text-gray-400 uppercase tracking-widest">
+                            Clique acima para ver a fase
                         </p>
                     </div>
                 </div>
@@ -252,6 +231,20 @@ export default function Home() {
                 </div>
             </div> 
         </section>
+
+        {/* Botão extra antes do Footer */}
+        <div className="flex justify-center my-10">
+            <Link href="/produto" className="inline-block text-black px-10 py-1 rounded-lg font-bold group relative">
+                <div className="absolute -inset-1 bg-yellow-800/30 rounded-lg blur-lg group-hover:bg-yellow-500/50 transition-all duration-300"></div>
+                <div className="relative">
+                    <img 
+                        src="/img/botton.png" 
+                        alt="Quero meu Plano de Fuga" 
+                        className="w-52 md:w-[220px] transform group-hover:scale-105 transition-transform duration-300" 
+                    />
+                </div>
+            </Link>
+        </div>
 
         {/* Footer */}
         <footer className="relative py-10 text-gray-400 text-sm">

@@ -22,3 +22,120 @@
   font-size: 1.5rem;
   margin-bottom: 2rem;
 }
+
+.heroContainer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #000000, #1a1a1a);
+}
+
+.heroContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/img/grid-pattern.svg');
+  opacity: 0.1;
+  animation: gridMove 20s linear infinite;
+}
+
+.heroTitle {
+  position: relative;
+  animation: glowText 2s ease-in-out infinite alternate;
+}
+
+.heroSubtitle {
+  position: relative;
+  animation: typewriter 4s steps(40) 1s forwards;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #fbbf24;
+}
+
+.heroButton {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.heroButton:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.5));
+}
+
+.heroButton::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #fbbf24, #f59e0b);
+  z-index: -1;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.heroButton:hover::after {
+  opacity: 1;
+}
+
+.authorImage {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.authorImage:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+@keyframes glowText {
+  from {
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5),
+                 0 0 20px rgba(251, 191, 36, 0.3),
+                 0 0 30px rgba(251, 191, 36, 0.1);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.8),
+                 0 0 30px rgba(251, 191, 36, 0.5),
+                 0 0 40px rgba(251, 191, 36, 0.3);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes gridMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.floatingElement {
+  position: absolute;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
