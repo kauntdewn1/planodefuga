@@ -1,0 +1,52 @@
+/* avatargamer.module.css */
+.avatarWrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    animation: slideUp 1s ease-out forwards;
+  }
+  
+  .balao {
+    z-index: 20;
+    position: relative;
+    left: 2rem;
+    animation: fadeIn 1.2s ease-in-out forwards;
+  }
+  
+  /* No arquivo styles/avatargamer.module.css */
+@media (min-width: 768px) {
+    .avatarContainer {
+      width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .speechBubble {
+      position: relative;
+      left: 70px;
+    }
+    
+    .avatar {
+      position: absolute;
+      left: 350px;
+      bottom: -100px;
+    }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(60px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes fadeInUp {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
