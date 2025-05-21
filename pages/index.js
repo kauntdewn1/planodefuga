@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import avatarStyles from '../styles/avatargamer.module.css'
-import heroStyles from '../styles/hero.module.css'
 
 export default function Home() {
   const lastChanceRef = useRef(null);
@@ -60,24 +59,24 @@ export default function Home() {
           </Head>
           <div className="bg-black text-white font-sans">
             {/* Hero Section */}
-            <section className={`text-center py-20 px-6 relative ${heroStyles.heroContainer}`}>
+            <section className={`text-center py-20 px-6 relative`}>
               <div className="relative z-10">
                 <img 
                   src="/img/autor.png" 
                   alt="Foto do autor" 
-                  className={`mx-auto mb-10 rounded-xl shadow-lg w-full md:w-[900px] ${heroStyles.authorImage}`} 
+                  className={`mx-auto mb-10 rounded-xl shadow-lg w-full md:w-[900px]`} 
                 />
                 <p className="text-xl text-yellow-800 md:text-2xl mb-8 animate-fade-in">
                   Esse não é um e-book. É o início do seu Plano de Fuga – um jogo real, onde cada fase te leva mais perto de uma vida com sentido.
                 </p>
                 
-                <p className={`text-xl text-yellow-400 md:text-2xl mb-3 ${heroStyles.heroSubtitle}`}>
+                <p className={`text-xl text-yellow-400 md:text-2xl mb-3`}>
                   Missão Ativada: Reconhecer a prisão. Escolher a liberdade.
                 </p>
                 
                 <Link
                     href="/produto"
-                    className={`mt-6 inline-block ${heroStyles.heroButton}`}
+                    className={`mt-6 inline-block`}
                     legacyBehavior>
                   <img 
                     src="/img/acessar_plano_livro.png" 
@@ -92,10 +91,10 @@ export default function Home() {
               </div>
 
               {/* Elementos flutuantes decorativos */}
-              <div className={`absolute top-10 left-10 ${heroStyles.floatingElement}`}>
+              <div className={`absolute top-10 left-10`}>
                 <img src="/img/game-icon-1.svg" alt="Ícone de jogo" className="w-16 opacity-50" />
               </div>
-              <div className={`absolute bottom-10 right-10 ${heroStyles.floatingElement}`}>
+              <div className={`absolute bottom-10 right-10`}>
                 <img src="/img/game-icon-2.svg" alt="Ícone de jogo" className="w-16 opacity-50" />
               </div>
             </section>
