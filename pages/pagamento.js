@@ -22,9 +22,7 @@ export default function Pagamento() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Header />
-      
       <main className="py-16 px-6 text-center">
         <h1 className="text-4xl font-bold mb-6 text-yellow-400">Finalize seu pagamento</h1>
         
@@ -71,25 +69,28 @@ export default function Pagamento() {
               Se não for redirecionado, clique no botão abaixo após realizar o pagamento.
             </p>
             
-            <Link href="/obrigado">
-              <a className="mt-6 inline-block bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold">
+            <Link
+              href="/obrigado"
+              className="mt-6 inline-block bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold">
+              
                 Já paguei
-              </a>
+              
             </Link>
           </div>
         ) : (
           <div className="max-w-md mx-auto">
             <p className="mb-6">Nenhuma informação de pagamento encontrada.</p>
-            <Link href="/produto">
-              <a className="inline-block bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold">
+            <Link
+              href="/produto"
+              className="inline-block bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold">
+              
                 Voltar para a página do produto
-              </a>
+              
             </Link>
           </div>
         )}
       </main>
-
       <Footer />
     </div>
-  )
+  );
 }

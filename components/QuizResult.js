@@ -33,13 +33,12 @@ export default function QuizResult({ answers, onRestart }) {
       <h2 className={styles.resultTitle}>{result.title}</h2>
       <p className={styles.resultDescription}>{result.description}</p>
       <p className={styles.resultRecommendation}>{result.recommendation}</p>
-      
       <div className={styles.resultActions}>
         <button onClick={onRestart} className={styles.restartButton}>
           Refazer o diagnóstico
         </button>
-        <Link href="/produto">
-          <a className={styles.actionButton}>Quero meu Plano de Fuga</a>
+        <Link href="/produto" className={styles.actionButton}>
+          Quero meu Plano de Fuga
         </Link>
       </div>
     </div>

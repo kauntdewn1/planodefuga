@@ -48,9 +48,7 @@ export default function Produto() {
         <meta name="description" content="Conheça o livro Plano de Fuga e descubra como conquistar sua liberdade" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Header />
-      
       <main>
         {/* Seção Principal do Produto */}
         <section className="py-16 px-6 text-center">
@@ -99,13 +97,14 @@ export default function Produto() {
         <section className="bg-yellow-400 text-black py-10 px-6 text-center">
           <h2 className="text-2xl font-bold mb-2">Sua liberdade começa agora.</h2>
           <p className="mb-4">R$29,90 no Pix. PDF entregue automaticamente após a compra.</p>
-          <Link href="https://openpix.com.br/pay/45c7b3c0-05a8-4b29-a707-20677e496715">
-            <a className="inline-block bg-black text-white px-6 py-3 rounded-lg font-bold">Quero meu Plano de Fuga</a>
+          <Link
+            href="https://openpix.com.br/pay/45c7b3c0-05a8-4b29-a707-20677e496715"
+            className="inline-block bg-black text-white px-6 py-3 rounded-lg font-bold">
+            Quero meu Plano de Fuga
           </Link>
         </section>
       </main>
-
       <Footer />
     </div>
-  )
+  );
 }

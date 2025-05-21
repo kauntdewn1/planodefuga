@@ -6,28 +6,28 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.logo}>
         <Link href="/logo-horizontal.png">
-          <a>Plano de Fuga</a>
+          Plano de Fuga
         </Link>
       </div>
       <nav className={styles.nav}>
         <ul>
           <li>
             <Link href="/">
-              <a>Início</a>
+              Início
             </Link>
           </li>
           <li>
             <Link href="#sobre">
-              <a>Sobre</a>
+              Sobre
             </Link>
           </li>
           <li>
             <Link href="#contato">
-              <a>Contato</a>
+              Contato
             </Link>
           </li>
         </ul>
       </nav>
     </header>
-  )
+  );
 }
