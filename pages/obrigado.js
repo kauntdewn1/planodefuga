@@ -11,20 +11,29 @@ export default function Obrigado() {
   }, []);
 
   return (
-    <div className="bg-black text-white font-sans text-center">
+    <div className="min-h-screen bg-black text-white">
       <Head>
-        <title>Obrigado pela Compra | Plano de Fuga</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Obrigado pela sua compra do Plano de Fuga" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Obrigado! | Plano de Fuga</title>
+        <meta name="description" content="Obrigado por adquirir o Plano de Fuga!" />
       </Head>
-      {/* Header customizado */}
-      <header className="bg-black w-full flex items-center px-6 py-4 justify-center">
-        <img src="/img/logo-horizontal.png" alt="Logo Plano de Fuga" className="h-16 w-auto" />
-      </header>
-      <main>
+
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        {/* Container do Vídeo */}
+        <div className="bg-white/5 p-4 rounded-2xl border border-pink-500/30 shadow-lg mb-8">
+          <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl">
+            <iframe
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/ua1Mm4vNKbo"
+              title="Plano de Fuga - Vídeo Explicativo"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+
         {/* Seção de Confirmação */}
-        <section className="py-20 px-6">
+        <section className="text-center py-20 px-6">
           <h1 className="text-4xl font-bold mb-6 text-yellow-400 flex items-center justify-center gap-3">
             <span className="inline-block text-green-400 text-5xl">✔</span>
             Sua fuga foi autorizada.
@@ -74,7 +83,7 @@ export default function Obrigado() {
             Quero conhecer a mentoria
           </Link>
         </section>
-      </main>
+      </div>
       <Footer />
     </div>
   );
