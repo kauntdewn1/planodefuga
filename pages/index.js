@@ -56,6 +56,8 @@ export default function Home() {
           <Head>
             <title>Plano de Fuga | Central de Fugas</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="icon" href="/favicon.ico" />
+            <meta property="og:image" content="/img/frase_expert.png" />
           </Head>
           <div className="bg-black text-white font-sans">
             {/* Hero Section */}
@@ -302,6 +304,24 @@ export default function Home() {
                     </div>
                 </div>
             </footer>
+
+            <div style={{
+              position: 'absolute',
+              top: '15%',
+              left: '20%',
+              transform: 'translateX(-50%)',
+              width: '100%',
+              height: '5%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              pointerEvents: 'none',
+              zIndex: 20
+            }}>
+              <span className="text-gray-800 text-xl md:text-2xl font-semibold px-6 py-3 shadow-text animate-float">
+                © CENTRAL DE FUGAS
+              </span>
+            </div>
           </div>
       </>
   );
